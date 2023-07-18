@@ -50,7 +50,7 @@ Future<String> asyncGet(String target, Map<String,String> params) async{
   });
   final String param = "?${binding.join("&")}";
   final Uri url = Uri.parse(stringUrl+target+param);
-  print(stringUrl+target+param);
+  debugPrint(stringUrl+target+param);
   //handling
   try{
     http.Response response = await http.get(url);
@@ -79,13 +79,13 @@ Future<Uint8List> asyncImageGet(String imagePath) async{
     throw Exception(e);
   }
 }
-Future<String> asyncImagePost(String target,io.File file,String ID) async {
+Future<String> asyncImagePost(String target,io.File file,String id) async {
   String res = "";
   Uri url = Uri.parse(stringUrl+target);
   List<int> imageToByte = file.readAsBytes() as List<int>;
   String base64Encoded = base64Encode(imageToByte);
   Map<String,String> header = {"Content-Type": "application/json"};
-  List<String> body = ["{ID:$ID}","{image:$base64Encoded}"];
+  List<String> body = ["{ID:$id}","{image:$base64Encoded}"];
   String jsonData = jsonEncode(body);
   try{
     http.Response response = await http.post(url,headers: header,body: jsonData);
