@@ -15,22 +15,182 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$IdRegistrationState {
+mixin _$UserState {
+  bool get isLoading => throw _privateConstructorUsedError;
+  UserResponse? get user => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $UserStateCopyWith<UserState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserStateCopyWith<$Res> {
+  factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
+      _$UserStateCopyWithImpl<$Res, UserState>;
+  @useResult
+  $Res call({bool isLoading, UserResponse? user});
+
+  $UserResponseCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
+    implements $UserStateCopyWith<$Res> {
+  _$UserStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? user = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $UserResponseCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserResponseCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_UserStateCopyWith<$Res> implements $UserStateCopyWith<$Res> {
+  factory _$$_UserStateCopyWith(
+          _$_UserState value, $Res Function(_$_UserState) then) =
+      __$$_UserStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isLoading, UserResponse? user});
+
+  @override
+  $UserResponseCopyWith<$Res>? get user;
+}
+
+/// @nodoc
+class __$$_UserStateCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$_UserState>
+    implements _$$_UserStateCopyWith<$Res> {
+  __$$_UserStateCopyWithImpl(
+      _$_UserState _value, $Res Function(_$_UserState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? user = freezed,
+  }) {
+    return _then(_$_UserState(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserResponse?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_UserState with DiagnosticableTreeMixin implements _UserState {
+  const _$_UserState({this.isLoading = false, this.user});
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  final UserResponse? user;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'UserState(isLoading: $isLoading, user: $user)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'UserState'))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('user', user));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UserState &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, isLoading, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UserStateCopyWith<_$_UserState> get copyWith =>
+      __$$_UserStateCopyWithImpl<_$_UserState>(this, _$identity);
+}
+
+abstract class _UserState implements UserState {
+  const factory _UserState({final bool isLoading, final UserResponse? user}) =
+      _$_UserState;
+
+  @override
+  bool get isLoading;
+  @override
+  UserResponse? get user;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UserStateCopyWith<_$_UserState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$CameraState {
   AsyncValue<CameraController> get controller =>
       throw _privateConstructorUsedError;
   Size? get imageSize => throw _privateConstructorUsedError;
   List<TextElement>? get elements => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $IdRegistrationStateCopyWith<IdRegistrationState> get copyWith =>
+  $CameraStateCopyWith<CameraState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $IdRegistrationStateCopyWith<$Res> {
-  factory $IdRegistrationStateCopyWith(
-          IdRegistrationState value, $Res Function(IdRegistrationState) then) =
-      _$IdRegistrationStateCopyWithImpl<$Res, IdRegistrationState>;
+abstract class $CameraStateCopyWith<$Res> {
+  factory $CameraStateCopyWith(
+          CameraState value, $Res Function(CameraState) then) =
+      _$CameraStateCopyWithImpl<$Res, CameraState>;
   @useResult
   $Res call(
       {AsyncValue<CameraController> controller,
@@ -39,9 +199,9 @@ abstract class $IdRegistrationStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$IdRegistrationStateCopyWithImpl<$Res, $Val extends IdRegistrationState>
-    implements $IdRegistrationStateCopyWith<$Res> {
-  _$IdRegistrationStateCopyWithImpl(this._value, this._then);
+class _$CameraStateCopyWithImpl<$Res, $Val extends CameraState>
+    implements $CameraStateCopyWith<$Res> {
+  _$CameraStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -73,11 +233,11 @@ class _$IdRegistrationStateCopyWithImpl<$Res, $Val extends IdRegistrationState>
 }
 
 /// @nodoc
-abstract class _$$_IdRegistrationStateCopyWith<$Res>
-    implements $IdRegistrationStateCopyWith<$Res> {
-  factory _$$_IdRegistrationStateCopyWith(_$_IdRegistrationState value,
-          $Res Function(_$_IdRegistrationState) then) =
-      __$$_IdRegistrationStateCopyWithImpl<$Res>;
+abstract class _$$_CameraStateCopyWith<$Res>
+    implements $CameraStateCopyWith<$Res> {
+  factory _$$_CameraStateCopyWith(
+          _$_CameraState value, $Res Function(_$_CameraState) then) =
+      __$$_CameraStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -87,11 +247,11 @@ abstract class _$$_IdRegistrationStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_IdRegistrationStateCopyWithImpl<$Res>
-    extends _$IdRegistrationStateCopyWithImpl<$Res, _$_IdRegistrationState>
-    implements _$$_IdRegistrationStateCopyWith<$Res> {
-  __$$_IdRegistrationStateCopyWithImpl(_$_IdRegistrationState _value,
-      $Res Function(_$_IdRegistrationState) _then)
+class __$$_CameraStateCopyWithImpl<$Res>
+    extends _$CameraStateCopyWithImpl<$Res, _$_CameraState>
+    implements _$$_CameraStateCopyWith<$Res> {
+  __$$_CameraStateCopyWithImpl(
+      _$_CameraState _value, $Res Function(_$_CameraState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -101,7 +261,7 @@ class __$$_IdRegistrationStateCopyWithImpl<$Res>
     Object? imageSize = freezed,
     Object? elements = freezed,
   }) {
-    return _then(_$_IdRegistrationState(
+    return _then(_$_CameraState(
       controller: null == controller
           ? _value.controller
           : controller // ignore: cast_nullable_to_non_nullable
@@ -120,10 +280,8 @@ class __$$_IdRegistrationStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_IdRegistrationState
-    with DiagnosticableTreeMixin
-    implements _IdRegistrationState {
-  const _$_IdRegistrationState(
+class _$_CameraState with DiagnosticableTreeMixin implements _CameraState {
+  const _$_CameraState(
       {this.controller = const AsyncValue.loading(),
       this.imageSize,
       final List<TextElement>? elements})
@@ -146,14 +304,14 @@ class _$_IdRegistrationState
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'IdRegistrationState(controller: $controller, imageSize: $imageSize, elements: $elements)';
+    return 'CameraState(controller: $controller, imageSize: $imageSize, elements: $elements)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'IdRegistrationState'))
+      ..add(DiagnosticsProperty('type', 'CameraState'))
       ..add(DiagnosticsProperty('controller', controller))
       ..add(DiagnosticsProperty('imageSize', imageSize))
       ..add(DiagnosticsProperty('elements', elements));
@@ -163,7 +321,7 @@ class _$_IdRegistrationState
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_IdRegistrationState &&
+            other is _$_CameraState &&
             (identical(other.controller, controller) ||
                 other.controller == controller) &&
             (identical(other.imageSize, imageSize) ||
@@ -178,16 +336,15 @@ class _$_IdRegistrationState
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_IdRegistrationStateCopyWith<_$_IdRegistrationState> get copyWith =>
-      __$$_IdRegistrationStateCopyWithImpl<_$_IdRegistrationState>(
-          this, _$identity);
+  _$$_CameraStateCopyWith<_$_CameraState> get copyWith =>
+      __$$_CameraStateCopyWithImpl<_$_CameraState>(this, _$identity);
 }
 
-abstract class _IdRegistrationState implements IdRegistrationState {
-  const factory _IdRegistrationState(
+abstract class _CameraState implements CameraState {
+  const factory _CameraState(
       {final AsyncValue<CameraController> controller,
       final Size? imageSize,
-      final List<TextElement>? elements}) = _$_IdRegistrationState;
+      final List<TextElement>? elements}) = _$_CameraState;
 
   @override
   AsyncValue<CameraController> get controller;
@@ -197,6 +354,6 @@ abstract class _IdRegistrationState implements IdRegistrationState {
   List<TextElement>? get elements;
   @override
   @JsonKey(ignore: true)
-  _$$_IdRegistrationStateCopyWith<_$_IdRegistrationState> get copyWith =>
+  _$$_CameraStateCopyWith<_$_CameraState> get copyWith =>
       throw _privateConstructorUsedError;
 }

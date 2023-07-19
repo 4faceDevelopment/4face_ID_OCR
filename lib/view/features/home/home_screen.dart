@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fourface_id_ocr/view/features/id_registration/id_registration_screen.dart';
+import 'package:fourface_id_ocr/view/features/id_registration/id_registration_view_model.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -45,11 +46,27 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
               ),
             ),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                showRequestPermissionDialog(context);
-              },
-              child: const Text('本人確認へ'),
+            SizedBox(
+              height: 50,
+              width: 200,
+              child: ElevatedButton(
+                onPressed: () async {
+                  await ref
+                      .read(userViewModelProvider.notifier)
+                      .fetchResponse(userId)
+                      .then((value) async {
+                    showRequestPermissionDialog(context);
+                  });
+                },
+                child: ref.watch(
+                  userViewModelProvider
+                      .select((value) => value.isLoading),
+                )
+                    ? const CircularProgressIndicator(
+                        color: Colors.white,
+                      )
+                    : const Text('本人確認へ'),
+              ),
             ),
           ],
         ),
@@ -63,7 +80,6 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('写真と動画の撮影を4faceに許可しますか'),
-          // content: const Text('QRコードを読み取る為にカメラを利用します'),
           actions: <Widget>[
             ElevatedButton(
               onPressed: () => Navigator.pop(context),
@@ -74,8 +90,9 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
                 await Permission.camera.request().isGranted.then((value) async {
                   if (value) {
                     Navigator.pop(context);
-                    Navigator.of(context)
-                        .push<dynamic>(IdRegistrationScreen.route());
+                    Navigator.of(context).push<dynamic>(
+                      IdRegistrationScreen.route(),
+                    );
                   } else {
                     Navigator.pop(context);
                     openAppSettings();

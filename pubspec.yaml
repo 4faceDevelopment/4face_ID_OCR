@@ -36,6 +36,7 @@ dependencies:
   json_annotation: ^4.8.1
   get_it: ^7.6.0
   flutter_dotenv: ^5.0.2
+  collection: ^1.17.1
 
   # others
   age_calculator: ^1.0.0

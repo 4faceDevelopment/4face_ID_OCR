@@ -4,5 +4,5 @@ class Environment {
 
   Environment({required this.apiEndpoint, required this.userAgent});
 
-  String get userApiEndpoint => '$apiEndpoint/user';
+  String get sandboxApiEndpoint => '$apiEndpoint/sandbox';
 }

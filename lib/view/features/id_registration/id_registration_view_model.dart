@@ -3,27 +3,56 @@ import 'dart:ui';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fourface_id_ocr/service/rest_api/domain/user_response.dart';
+import 'package:fourface_id_ocr/service/rest_api/repositories/user_repository.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 
 part 'id_registration_view_model.freezed.dart';
 
 @freezed
-class IdRegistrationState with _$IdRegistrationState {
-  const factory IdRegistrationState({
+class UserState with _$UserState {
+  const factory UserState({
+    @Default(false) bool isLoading,
+    UserResponse? user,
+  }) = _UserState;
+}
+
+@freezed
+class CameraState with _$CameraState {
+  const factory CameraState({
     @Default(AsyncValue.loading()) AsyncValue<CameraController> controller,
     Size? imageSize,
     List<TextElement>? elements,
-  }) = _IdRegistrationState;
+  }) = _CameraState;
 }
 
-final idRegistrationViewModelProvider =
-    StateNotifierProvider<IdRegistrationViewModel, IdRegistrationState>(
-  (ref) => IdRegistrationViewModel._(ref),
+final userViewModelProvider = StateNotifierProvider<UserViewModel, UserState>(
+  (ref) => UserViewModel._(ref),
 );
 
-class IdRegistrationViewModel extends StateNotifier<IdRegistrationState> {
-  IdRegistrationViewModel._(this._ref) : super(const IdRegistrationState()) {
+final cameraViewModelProvider =
+    StateNotifierProvider<CameraViewModel, CameraState>(
+  (ref) => CameraViewModel._(ref),
+);
+
+class UserViewModel extends StateNotifier<UserState> {
+  UserViewModel._(this._ref) : super(const UserState());
+
+  final Ref _ref;
+
+  Future<void> fetchResponse(int id) async {
+    state = state.copyWith(isLoading: true);
+    final result = await _ref.read(userRepositoryProvider).fetch(id);
+    state = state.copyWith(
+      isLoading: false,
+      user: result,
+    );
+  }
+}
+
+class CameraViewModel extends StateNotifier<CameraState> {
+  CameraViewModel._(this._ref) : super(const CameraState()) {
     initializeCameraController();
   }
 
@@ -137,6 +166,4 @@ class IdRegistrationViewModel extends StateNotifier<IdRegistrationState> {
     }
     return InputImageRotation.rotation0deg;
   }
-
-  Future<void> fetchResponse() async {}
 }

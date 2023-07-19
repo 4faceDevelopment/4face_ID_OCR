@@ -19,9 +19,10 @@ class IdRegistrationScreen extends ConsumerStatefulWidget {
 }
 
 class IdRegistrationScreenState extends ConsumerState<IdRegistrationScreen> {
+
   @override
   Widget build(BuildContext context) {
-    final cameraController = ref.watch(idRegistrationViewModelProvider);
+    final cameraController = ref.watch(cameraViewModelProvider);
 
     return Scaffold(
       body: cameraController.controller.when(
