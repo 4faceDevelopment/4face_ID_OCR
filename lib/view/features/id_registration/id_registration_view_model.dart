@@ -24,6 +24,8 @@ class CameraState with _$CameraState {
     @Default(AsyncValue.loading()) AsyncValue<CameraController> controller,
     Size? imageSize,
     List<TextElement>? elements,
+    @Default(false) bool isSuccessfullyAnalyzed,
+    @Default('') String mrz,
   }) = _CameraState;
 }
 
@@ -96,12 +98,16 @@ class CameraViewModel extends StateNotifier<CameraState> {
             await textRecognizer.processImage(inputImage);
         List<TextElement> detectedElements = [];
         for (TextBlock block in recognizedText.blocks) {
+          debugPrint('============ Block ============');
           for (TextLine line in block.lines) {
+            debugPrint('============ Line ============');
             for (TextElement element in line.elements) {
+              debugPrint('element: ${element.text}');
               detectedElements.add(element);
             }
           }
         }
+        analyze(detectedElements);
 
         state = state.copyWith(
           imageSize:
@@ -113,6 +119,29 @@ class CameraViewModel extends StateNotifier<CameraState> {
       }
       await Future.delayed(const Duration(milliseconds: 250));
       isDetecting = false;
+    }
+  }
+
+  void analyze(List<TextElement> elements) {
+    String joinedText = elements.map((e) => e.text).join();
+
+    // 読み取りミスを置換 FIXME: 他にもあるかも
+    joinedText = joinedText.replaceAll('«', '<');
+    int index = joinedText.indexOf("P<");
+    if (index != -1) {
+      String? mrz =
+          joinedText.length >= index + 88
+              ? joinedText.substring(index, index + 88)
+              : null;
+      if(mrz != null) {
+        debugPrint('mrz: $mrz');
+        controller.stopImageStream();
+        state = state.copyWith(
+          isSuccessfullyAnalyzed: true,
+          mrz: mrz,
+        );
+      }
+      return;
     }
   }
 

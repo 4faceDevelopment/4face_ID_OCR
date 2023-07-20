@@ -37,6 +37,8 @@ dependencies:
   get_it: ^7.6.0
   flutter_dotenv: ^5.0.2
   collection: ^1.17.1
+  intl: ^0.18.0
+  image: ^4.0.17
 
   # others
   age_calculator: ^1.0.0

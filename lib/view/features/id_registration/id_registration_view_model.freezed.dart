@@ -180,6 +180,8 @@ mixin _$CameraState {
       throw _privateConstructorUsedError;
   Size? get imageSize => throw _privateConstructorUsedError;
   List<TextElement>? get elements => throw _privateConstructorUsedError;
+  bool get isSuccessfullyAnalyzed => throw _privateConstructorUsedError;
+  String get mrz => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CameraStateCopyWith<CameraState> get copyWith =>
@@ -195,7 +197,9 @@ abstract class $CameraStateCopyWith<$Res> {
   $Res call(
       {AsyncValue<CameraController> controller,
       Size? imageSize,
-      List<TextElement>? elements});
+      List<TextElement>? elements,
+      bool isSuccessfullyAnalyzed,
+      String mrz});
 }
 
 /// @nodoc
@@ -214,6 +218,8 @@ class _$CameraStateCopyWithImpl<$Res, $Val extends CameraState>
     Object? controller = null,
     Object? imageSize = freezed,
     Object? elements = freezed,
+    Object? isSuccessfullyAnalyzed = null,
+    Object? mrz = null,
   }) {
     return _then(_value.copyWith(
       controller: null == controller
@@ -228,6 +234,14 @@ class _$CameraStateCopyWithImpl<$Res, $Val extends CameraState>
           ? _value.elements
           : elements // ignore: cast_nullable_to_non_nullable
               as List<TextElement>?,
+      isSuccessfullyAnalyzed: null == isSuccessfullyAnalyzed
+          ? _value.isSuccessfullyAnalyzed
+          : isSuccessfullyAnalyzed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      mrz: null == mrz
+          ? _value.mrz
+          : mrz // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -243,7 +257,9 @@ abstract class _$$_CameraStateCopyWith<$Res>
   $Res call(
       {AsyncValue<CameraController> controller,
       Size? imageSize,
-      List<TextElement>? elements});
+      List<TextElement>? elements,
+      bool isSuccessfullyAnalyzed,
+      String mrz});
 }
 
 /// @nodoc
@@ -260,6 +276,8 @@ class __$$_CameraStateCopyWithImpl<$Res>
     Object? controller = null,
     Object? imageSize = freezed,
     Object? elements = freezed,
+    Object? isSuccessfullyAnalyzed = null,
+    Object? mrz = null,
   }) {
     return _then(_$_CameraState(
       controller: null == controller
@@ -274,6 +292,14 @@ class __$$_CameraStateCopyWithImpl<$Res>
           ? _value._elements
           : elements // ignore: cast_nullable_to_non_nullable
               as List<TextElement>?,
+      isSuccessfullyAnalyzed: null == isSuccessfullyAnalyzed
+          ? _value.isSuccessfullyAnalyzed
+          : isSuccessfullyAnalyzed // ignore: cast_nullable_to_non_nullable
+              as bool,
+      mrz: null == mrz
+          ? _value.mrz
+          : mrz // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -284,7 +310,9 @@ class _$_CameraState with DiagnosticableTreeMixin implements _CameraState {
   const _$_CameraState(
       {this.controller = const AsyncValue.loading(),
       this.imageSize,
-      final List<TextElement>? elements})
+      final List<TextElement>? elements,
+      this.isSuccessfullyAnalyzed = false,
+      this.mrz = ''})
       : _elements = elements;
 
   @override
@@ -303,8 +331,15 @@ class _$_CameraState with DiagnosticableTreeMixin implements _CameraState {
   }
 
   @override
+  @JsonKey()
+  final bool isSuccessfullyAnalyzed;
+  @override
+  @JsonKey()
+  final String mrz;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CameraState(controller: $controller, imageSize: $imageSize, elements: $elements)';
+    return 'CameraState(controller: $controller, imageSize: $imageSize, elements: $elements, isSuccessfullyAnalyzed: $isSuccessfullyAnalyzed, mrz: $mrz)';
   }
 
   @override
@@ -314,7 +349,10 @@ class _$_CameraState with DiagnosticableTreeMixin implements _CameraState {
       ..add(DiagnosticsProperty('type', 'CameraState'))
       ..add(DiagnosticsProperty('controller', controller))
       ..add(DiagnosticsProperty('imageSize', imageSize))
-      ..add(DiagnosticsProperty('elements', elements));
+      ..add(DiagnosticsProperty('elements', elements))
+      ..add(
+          DiagnosticsProperty('isSuccessfullyAnalyzed', isSuccessfullyAnalyzed))
+      ..add(DiagnosticsProperty('mrz', mrz));
   }
 
   @override
@@ -326,12 +364,20 @@ class _$_CameraState with DiagnosticableTreeMixin implements _CameraState {
                 other.controller == controller) &&
             (identical(other.imageSize, imageSize) ||
                 other.imageSize == imageSize) &&
-            const DeepCollectionEquality().equals(other._elements, _elements));
+            const DeepCollectionEquality().equals(other._elements, _elements) &&
+            (identical(other.isSuccessfullyAnalyzed, isSuccessfullyAnalyzed) ||
+                other.isSuccessfullyAnalyzed == isSuccessfullyAnalyzed) &&
+            (identical(other.mrz, mrz) || other.mrz == mrz));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, controller, imageSize,
-      const DeepCollectionEquality().hash(_elements));
+  int get hashCode => Object.hash(
+      runtimeType,
+      controller,
+      imageSize,
+      const DeepCollectionEquality().hash(_elements),
+      isSuccessfullyAnalyzed,
+      mrz);
 
   @JsonKey(ignore: true)
   @override
@@ -344,7 +390,9 @@ abstract class _CameraState implements CameraState {
   const factory _CameraState(
       {final AsyncValue<CameraController> controller,
       final Size? imageSize,
-      final List<TextElement>? elements}) = _$_CameraState;
+      final List<TextElement>? elements,
+      final bool isSuccessfullyAnalyzed,
+      final String mrz}) = _$_CameraState;
 
   @override
   AsyncValue<CameraController> get controller;
@@ -352,6 +400,10 @@ abstract class _CameraState implements CameraState {
   Size? get imageSize;
   @override
   List<TextElement>? get elements;
+  @override
+  bool get isSuccessfullyAnalyzed;
+  @override
+  String get mrz;
   @override
   @JsonKey(ignore: true)
   _$$_CameraStateCopyWith<_$_CameraState> get copyWith =>

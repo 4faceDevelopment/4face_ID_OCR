@@ -18,7 +18,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ホーム画面'),
+        title: const Center(child: Text('ホーム画面')),
       ),
       body: Center(
         child: Column(
